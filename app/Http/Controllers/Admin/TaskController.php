@@ -213,7 +213,7 @@ class TaskController extends Controller
 
     public function getTask(){
 
-        $assignTask = Auth::user()->tasks()->with('users')->get();
+        $assignTask = Task::calendarData();
         return view('admin.Task.viewtask' , compact('assignTask'));
 
     }
