@@ -223,8 +223,7 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $tasks = Task::with('user')->latest()->get();
-    
+        $tasks = Task::orderBy('task_date')->get();
         return view('admin.Task.index' , compact('tasks'));
     }
 
