@@ -53,15 +53,23 @@ class TaskController extends Controller
  
         switch ($request->type) {
            case 'add':
-           
-            // dd($request->all());
-            $validator = Validator::make($request->all(), [
+
+            $rules = [
                 'users.0' => 'required',
                 'description' => 'required',
                 'task_type' => 'required',
                 'start' => 'nullable|date',
-               ] , [
-                'users.0.required' => 'Please select at least one user..'
+                'end' => 'nullable|date|after:end',
+            ];
+
+            if ($request->date_option != 'duration' ){
+                $rules['end'] = 'required';
+            }
+           
+            // dd($request->all());
+            $validator = Validator::make($request->all(), $rules, [
+                'users.0.required' => 'Please select at least one user..',
+                'end.after' => 'The End Date must be greater than the Start Date.'
                ]);
 
                if ($validator->fails()) {

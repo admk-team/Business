@@ -32,7 +32,7 @@
             events : [
                 @foreach($assignTask as $task)
                 {
-                                            id: '{{ $task->id }}',
+                        id: '{{ $task->id }}',
                         title: 'Task: {{ $task->task_description }}\nTask Time: {{ $task->task_time }}',
                         start: '{{ $task->task_date . " " . $task->task_time }}',
                         end: '{{ $task->end_date . " 23:59:59" }}', // Set end time to 23:59:59 of the same day
